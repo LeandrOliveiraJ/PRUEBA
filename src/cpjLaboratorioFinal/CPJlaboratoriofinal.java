@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package laboratoriofinal;
+package cpjLaboratorioFinal;
 
 /**
  *
  * @author Bulgaro
  */
-public class LaboratorioFinal {
-
-    /**
-     * @param args the command line arguments
-     */
+public class CPJlaboratoriofinal {
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        fc
+        
+        
     }
     
 }
