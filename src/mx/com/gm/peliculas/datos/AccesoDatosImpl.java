@@ -57,10 +57,36 @@ public class AccesoDatosImpl implements AccesoDatos {
     @Override
     public List<Pelicula> listar(String nombre) {
         //
-        
         List<Pelicula> lista = new ArrayList<>();
-          
-        return lista;
+          File archivo = new File(nombre);
+        if (archivo.exists()) {
+            BufferedReader entrada = null;
+            try {
+                entrada = new BufferedReader(new FileReader(archivo));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String lectura = null;
+            try {
+                lectura = entrada.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            while (lectura != null) {
+                System.out.println("Pelicula: " + lectura);
+                try {
+                    lectura = entrada.readLine();
+                } catch (IOException ex) {
+                    Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            try {
+                entrada.close();
+            } catch (IOException ex) {
+                Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
     }
 
     @Override

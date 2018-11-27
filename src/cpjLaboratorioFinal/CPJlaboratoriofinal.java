@@ -45,8 +45,6 @@ public class CPJlaboratoriofinal {
                 break;
                 case 3:
                     System.out.println("3.-Listar Peliculas");
-                    String nombre = entrada.next();
-                    Pelicula pelicula = new Pelicula(nombre);
                     catalogo.listarPeliculas(NOMBRE_ARCHIVO);
                     
                 break;
