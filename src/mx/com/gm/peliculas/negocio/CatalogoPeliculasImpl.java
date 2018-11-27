@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package mx.com.gm.peliculas.negocio;
+import mx.com.gm.peliculas.datos.AccesoDatos;
 import mx.com.gm.peliculas.datos.AccesoDatosImpl;
 import mx.com.gm.peliculas.domain.Pelicula;
 /**
@@ -12,7 +13,7 @@ import mx.com.gm.peliculas.domain.Pelicula;
  */
 public class CatalogoPeliculasImpl implements CatalogoPeliculas {
     AccesoDatosImpl acceso = new AccesoDatosImpl();
-    
+    AccesoDatos datos;
     
     
     @Override
@@ -31,8 +32,12 @@ public class CatalogoPeliculasImpl implements CatalogoPeliculas {
 
     @Override
     public void listarPeliculas(String nombreArchivo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        //listar Pelicula
+        if (acceso.existe(nombreArchivo)==true){
+            acceso.listar(nombreArchivo);
+        }else{
+            System.out.println("No Hay Lista");}
+     }
 
     @Override
     public void buscarPelicula(String nombreArchivo, String buscar) {

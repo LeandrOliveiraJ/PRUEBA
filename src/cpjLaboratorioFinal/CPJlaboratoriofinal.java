@@ -41,13 +41,18 @@ public class CPJlaboratoriofinal {
                     System.out.println("2.-Agregar Palicula");
                     String nombre = entrada.next();
                     Pelicula pelicula = new Pelicula(nombre);
-                    
+                    catalogo.agregarPelicula(nombre, NOMBRE_ARCHIVO);
                 break;
                 case 3:
                     System.out.println("3.-Listar Peliculas");
+                    String nombre = entrada.next();
+                    Pelicula pelicula = new Pelicula(nombre);
+                    catalogo.listarPeliculas(NOMBRE_ARCHIVO);
+                    
                 break;
                 case 4:
                     System.out.println("4.-Buscar pelicula");
+                    
                 break;
                 case 0:
                     System.out.println("0.-Salir");

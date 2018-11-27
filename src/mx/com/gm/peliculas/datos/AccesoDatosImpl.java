@@ -1,5 +1,6 @@
 package mx.com.gm.peliculas.datos;
 
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +20,7 @@ import mx.com.gm.peliculas.domain.Pelicula;
  * @author Bulgaro
  */
 public class AccesoDatosImpl implements AccesoDatos {
-    AccesoDatos datos;
+    
     Pelicula pelicula = new Pelicula();
 
 
@@ -54,24 +56,30 @@ public class AccesoDatosImpl implements AccesoDatos {
 
     @Override
     public List<Pelicula> listar(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //
+        
+        List<Pelicula> lista = new ArrayList<>();
+          
+        return lista;
     }
 
     @Override
     public void escribir(Pelicula pelicula, String nombreArchivo, boolean anexar) {
                 
-                File archivo = new File(pelicula, nombreArchivo, true);
+                File archivo = new File(nombreArchivo);
+                
                 PrintWriter salida = null;
         try {
-            salida = new PrintWriter(new FileWriter(archivo));
+            salida = new PrintWriter (new FileWriter(nombreArchivo, anexar));
         } catch (IOException ex) {
             Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-                String contenido="contenido archivo+++ ";
-                salida.println(contenido);
+                String contenido = pelicula.getNombre();
+                salida.println("Pelicula............. " + contenido);
                 salida.println();
-                salida.println("fin de la escritura");
+                salida.println("----------------------------------");
                 salida.close();
+                System.out.println("se ha anexado la informacion correctamente");
     }
 
     @Override
@@ -81,7 +89,9 @@ public class AccesoDatosImpl implements AccesoDatos {
 
     @Override
     public void borrar(String nombreArchivo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        File archivo = new File(nombreArchivo);
+        archivo.delete();
+        System.out.println("Archivo Borrado");
     }
         
     }
