@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package mx.com.gm.peliculas.negocio;
+import java.util.ArrayList;
+import java.util.List;
 import mx.com.gm.peliculas.datos.AccesoDatos;
 import mx.com.gm.peliculas.datos.AccesoDatosImpl;
 import mx.com.gm.peliculas.domain.Pelicula;
@@ -33,6 +35,7 @@ public class CatalogoPeliculasImpl implements CatalogoPeliculas {
     @Override
     public void listarPeliculas(String nombreArchivo) {
         //listar Pelicula
+        List<Pelicula> lista = new ArrayList<>();
         if (acceso.existe(nombreArchivo)==true){
             acceso.listar(nombreArchivo);
         }else{
@@ -41,7 +44,10 @@ public class CatalogoPeliculasImpl implements CatalogoPeliculas {
 
     @Override
     public void buscarPelicula(String nombreArchivo, String buscar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (acceso.existe(nombreArchivo)== true){
+            String resp = acceso.buscar(nombreArchivo, buscar);
+            System.out.println(resp);
+        }
     }
 
     @Override

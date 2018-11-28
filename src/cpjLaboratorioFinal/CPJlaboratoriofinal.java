@@ -50,7 +50,8 @@ public class CPJlaboratoriofinal {
                 break;
                 case 4:
                     System.out.println("4.-Buscar pelicula");
-                    
+                    String buscar = entrada.next();
+                    catalogo.buscarPelicula(NOMBRE_ARCHIVO, buscar);
                 break;
                 case 0:
                     System.out.println("0.-Salir");

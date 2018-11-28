@@ -57,7 +57,7 @@ public class AccesoDatosImpl implements AccesoDatos {
     @Override
     public List<Pelicula> listar(String nombre) {
         //
-        List<Pelicula> lista = new ArrayList<>();
+        
           File archivo = new File(nombre);
         if (archivo.exists()) {
             BufferedReader entrada = null;
@@ -88,7 +88,7 @@ public class AccesoDatosImpl implements AccesoDatos {
         }
         return null;
     }
-
+ 
     @Override
     public void escribir(Pelicula pelicula, String nombreArchivo, boolean anexar) {
                 
@@ -110,8 +110,36 @@ public class AccesoDatosImpl implements AccesoDatos {
 
     @Override
     public String buscar(String nombreArchivo, String buscar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        String resp = null;
+        BufferedReader entrada = null;
+             try {
+                 entrada = new BufferedReader(new FileReader(nombreArchivo));
+             } catch (FileNotFoundException ex) {
+                 Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            String lectura = null;
+             try {
+                 lectura = entrada.readLine();
+             } catch (IOException ex) {
+                 Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            while (lectura != null) {
+                if (lectura.equalsIgnoreCase(buscar)){
+                    resp="Pelicula ha sido encontrada";
+                }
+                try {
+                    lectura = entrada.readLine();
+                } catch (IOException ex) {
+                    Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+             try {
+                 entrada.close();
+             } catch (IOException ex) {
+                 Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        return resp;
+        }
 
     @Override
     public void borrar(String nombreArchivo) {
@@ -119,6 +147,5 @@ public class AccesoDatosImpl implements AccesoDatos {
         archivo.delete();
         System.out.println("Archivo Borrado");
     }
-        
+    
     }
- 
