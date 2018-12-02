@@ -9,9 +9,15 @@ import java.util.Scanner;
 import mx.com.gm.peliculas.datos.AccesoDatosImpl;
 import mx.com.gm.peliculas.domain.Pelicula;
 import mx.com.gm.peliculas.negocio.CatalogoPeliculasImpl;
+import vistas.Menu;
 
             
 public class CPJlaboratoriofinal {
+        
+        
+    
+    
+    
     
         public static Scanner entrada = new Scanner(System.in);
         private static final String NOMBRE_ARCHIVO = "C:\\Users\\Bulgaro\\Desktop\\Funadamentos Java\\laboratorioFinal\\laboratorioFinal\\catalogoPeliculas\\catalogoPeliculas.txt";
@@ -19,6 +25,16 @@ public class CPJlaboratoriofinal {
         Pelicula pelicula;
         
         public static void main(String[] args) {
+            
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Menu().setVisible(true);
+            }
+        });
+            
+            
+            
+            
             CatalogoPeliculasImpl catalogo = new CatalogoPeliculasImpl();
             
             do{
@@ -27,6 +43,7 @@ public class CPJlaboratoriofinal {
                 System.out.println("2.-Agregar Pelicula");
                 System.out.println("3.-Listar Peliculas");
                 System.out.println("4.-Buscar Pelicula");
+                System.out.println("5.-Borrar Archivo  (esta opcion no esta en el requerimiento, la he puesto para motivos de prueba)");//esta opcion no esta en el requerimiento, la he puestop para motivos de prueba
                 System.out.println("0.-Salir");
                 System.out.println("Elija Opcion");
             
@@ -52,6 +69,10 @@ public class CPJlaboratoriofinal {
                     System.out.println("4.-Buscar pelicula");
                     String buscar = entrada.next();
                     catalogo.buscarPelicula(NOMBRE_ARCHIVO, buscar);
+                break;
+                case 5:
+                    System.out.println("5.-Borrar Archivo");//esta opcion no esta en el requerimiento, la he puestop para motivos de prueba
+                    catalogo.borrarArchivo(NOMBRE_ARCHIVO);
                 break;
                 case 0:
                     System.out.println("0.-Salir");

@@ -1,5 +1,7 @@
 package mx.com.gm.peliculas.domain;
 
+import javax.swing.JTextField;
+
 
 public class Pelicula {
     private String nombre;
@@ -11,6 +13,8 @@ public class Pelicula {
         this.nombre = nombre;
     }
 
+
+
     public String getNombre() {
         return nombre;
     }
@@ -21,8 +25,10 @@ public class Pelicula {
 
     @Override
     public String toString() {
-        return "pelicula{" + "nombre=" + nombre + '}';
+        return "Pelicula{" + "nombre=" + nombre + '}';
     }
+
+    
     
     
 }
