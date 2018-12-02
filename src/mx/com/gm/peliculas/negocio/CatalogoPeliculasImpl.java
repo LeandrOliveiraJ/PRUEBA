@@ -35,19 +35,23 @@ public class CatalogoPeliculasImpl implements CatalogoPeliculas {
     @Override
     public void listarPeliculas(String nombreArchivo) {
         //listar Pelicula
-        List<Pelicula> lista = new ArrayList<>();
+        
         if (acceso.existe(nombreArchivo)==true){
-            acceso.listar(nombreArchivo);
+            List<Pelicula> peliculas = acceso.listar(nombreArchivo);
+            
+            for(Pelicula pelicula : peliculas){
+                System.out.println(pelicula);
+            }
         }else{
             System.out.println("No Hay Lista");}
      }
 
     @Override
     public void buscarPelicula(String nombreArchivo, String buscar) {
-        if (acceso.existe(nombreArchivo)== true){
-            String resp = acceso.buscar(nombreArchivo, buscar);
-            System.out.println(resp);
-        }
+        
+        String buscado = null;
+        buscado = datos.buscar(nombreArchivo, buscar);
+        
     }
 
     @Override
@@ -59,6 +63,17 @@ public class CatalogoPeliculasImpl implements CatalogoPeliculas {
         }else{
             acceso.crear(nombreArchivo);
             
+        }
+    }
+    @Override
+    public void borrarArchivo(String nombreArchivo) {
+        
+        if (acceso.existe(nombreArchivo)==true){
+            acceso.borrar(nombreArchivo);
+            System.out.println("El archivo Se ha borrado con exito");
+            
+        }else{
+            System.out.println("No se ha podido borrar el archivo");
         }
     }
     
