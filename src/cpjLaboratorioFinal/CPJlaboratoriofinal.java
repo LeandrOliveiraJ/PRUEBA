@@ -63,7 +63,6 @@ public class CPJlaboratoriofinal {
                 case 3:
                     System.out.println("3.-Listar Peliculas");
                     catalogo.listarPeliculas(NOMBRE_ARCHIVO);
-                    
                 break;
                 case 4:
                     System.out.println("4.-Buscar pelicula");

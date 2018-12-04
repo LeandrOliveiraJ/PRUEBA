@@ -25,6 +25,8 @@ public class AgregarPelicula extends javax.swing.JFrame {
      */
     public AgregarPelicula() {
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setLocationRelativeTo(null);
 
     }
 

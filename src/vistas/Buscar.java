@@ -19,7 +19,7 @@ public class Buscar extends javax.swing.JFrame {
      */CatalogoPeliculasImpl catalogo = new CatalogoPeliculasImpl();
     public Buscar() {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
     }
 
     /**
