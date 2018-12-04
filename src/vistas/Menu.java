@@ -22,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -33,6 +34,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblImg = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuMenu = new javax.swing.JMenu();
         itemInicializarArchivo = new javax.swing.JMenuItem();
@@ -44,6 +46,8 @@ public class Menu extends javax.swing.JFrame {
         itemSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vistas/logo.jpg"))); // NOI18N
 
         mnuMenu.setText("Menu");
 
@@ -80,6 +84,11 @@ public class Menu extends javax.swing.JFrame {
         mnuMenu.add(itemBuscarPelicula);
 
         itemBorrarPelicula.setText("Borrar Archivo");
+        itemBorrarPelicula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemBorrarPeliculaActionPerformed(evt);
+            }
+        });
         mnuMenu.add(itemBorrarPelicula);
 
         jMenuBar1.add(mnuMenu);
@@ -97,11 +106,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 614, Short.MAX_VALUE)
+            .addComponent(lblImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addComponent(lblImg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -131,6 +140,10 @@ public class Menu extends javax.swing.JFrame {
     private void itemBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBuscarPeliculaActionPerformed
         new Buscar().setVisible(true);
     }//GEN-LAST:event_itemBuscarPeliculaActionPerformed
+
+    private void itemBorrarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBorrarPeliculaActionPerformed
+        catalogo.borrarArchivo(NOMBRE_ARCHIVO);
+    }//GEN-LAST:event_itemBorrarPeliculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,6 +189,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemListarPelicula;
     private javax.swing.JMenuItem itemSalir;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblImg;
     private javax.swing.JMenu mnuMenu;
     private javax.swing.JMenu mnuSalir;
     // End of variables declaration//GEN-END:variables
