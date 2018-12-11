@@ -5,6 +5,9 @@
  */
 package vistas;
 
+import javax.swing.JTextField;
+import mx.com.gm.peliculas.datos.AccesoDatos;
+import mx.com.gm.peliculas.datos.AccesoDatosImpl;
 import mx.com.gm.peliculas.negocio.CatalogoPeliculasImpl;
 
 /**
@@ -13,13 +16,14 @@ import mx.com.gm.peliculas.negocio.CatalogoPeliculasImpl;
  */
 public class Buscar extends javax.swing.JFrame {
         private static final String NOMBRE_ARCHIVO = "C:\\Users\\Bulgaro\\Desktop\\Funadamentos Java\\laboratorioFinal\\laboratorioFinal\\catalogoPeliculas\\catalogoPeliculas.txt";
-
-    /**
-     * Creates new form Buscar
-     */CatalogoPeliculasImpl catalogo = new CatalogoPeliculasImpl();
+        CatalogoPeliculasImpl catalogo = new CatalogoPeliculasImpl();
+        AccesoDatosImpl acceso = new AccesoDatosImpl();
+        
     public Buscar() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setTitle("Buscar Pelicula");
     }
 
     /**
@@ -101,10 +105,10 @@ public class Buscar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        //String buscar = txtBuscar.getText();
-        //String rs;
-        //rs = catalogo.buscarPelicula(buscar,NOMBRE_ARCHIVO);
-        //lblBuscado.getText() = rs;
+        
+        JTextField buscar = txtBuscar;
+        
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**

@@ -118,16 +118,17 @@ public class AccesoDatosImpl implements AccesoDatos {
             Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         while (lectura != null) {
-            if (buscar.equalsIgnoreCase(lectura)) {
-                buscado = "Película " + lectura;
-                break;
-            }
+            if (buscar != null && buscar.equalsIgnoreCase(lectura)){
+                
+                        buscado = "Película " + lectura;
+                    break;
+                }
             try {
                 lectura = entrada.readLine();
             } catch (IOException ex) {
                 Logger.getLogger(AccesoDatosImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+         }        
         try {
             entrada.close();
         } catch (IOException ex) {
