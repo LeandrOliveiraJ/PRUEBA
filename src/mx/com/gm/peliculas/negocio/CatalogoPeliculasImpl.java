@@ -54,10 +54,11 @@ public class CatalogoPeliculasImpl implements CatalogoPeliculas {
      }
 
     @Override
-    public void buscarPelicula(String nombreArchivo, String buscar) {
+    public String buscarPelicula(String nombreArchivo, String buscar) {
         
         String buscado = null;
         buscado = acceso.buscar(nombreArchivo, buscar);
+        return buscado;
         
     }
 

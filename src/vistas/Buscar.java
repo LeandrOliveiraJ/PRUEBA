@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import mx.com.gm.peliculas.datos.AccesoDatos;
 import mx.com.gm.peliculas.datos.AccesoDatosImpl;
@@ -46,6 +47,12 @@ public class Buscar extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Pelicula"));
 
         lblBuscar.setText("Ingrese Nombre Pelicula");
+
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -106,10 +113,29 @@ public class Buscar extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         
-        JTextField buscar = txtBuscar;
+      String texto = txtBuscar.getText();
+        
+          String buscado = catalogo.buscarPelicula(NOMBRE_ARCHIVO, texto);
+
+        if (buscado != null) {
+            JOptionPane.showMessageDialog(null, "la pelicula encontrada ");
+            lblBuscado.setText(buscado);
+        } else {
+            JOptionPane.showMessageDialog(null, "No existe la pelicula a buscar");
+        }  
         
         
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+          char c = evt.getKeyChar();
+            if (c <'a' || c > 'z'  && !txtBuscar.getText().equals(" ")){//casilla de texto solo admite letras
+                btnBuscar.setEnabled(false);
+                evt.consume();
+            }else{
+                btnBuscar.setEnabled(true);
+            }
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
     /**
      * @param args the command line arguments
