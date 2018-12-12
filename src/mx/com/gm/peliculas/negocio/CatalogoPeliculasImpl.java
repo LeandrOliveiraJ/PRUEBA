@@ -14,8 +14,15 @@ import mx.com.gm.peliculas.domain.Pelicula;
  * @author Bulgaro
  */
 public class CatalogoPeliculasImpl implements CatalogoPeliculas {
-    AccesoDatosImpl acceso = new AccesoDatosImpl();
-    AccesoDatos datos;
+  
+    AccesoDatos acceso;
+    
+    public CatalogoPeliculasImpl(){
+    
+    acceso = new AccesoDatosImpl();
+    
+    
+    }
     
     
     @Override
@@ -50,7 +57,7 @@ public class CatalogoPeliculasImpl implements CatalogoPeliculas {
     public void buscarPelicula(String nombreArchivo, String buscar) {
         
         String buscado = null;
-        buscado = datos.buscar(nombreArchivo, buscar);
+        buscado = acceso.buscar(nombreArchivo, buscar);
         
     }
 

@@ -5,25 +5,42 @@
  */
 package vistas;
 
-import javax.swing.JTextField;
-import mx.com.gm.peliculas.datos.AccesoDatos;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import mx.com.gm.peliculas.datos.AccesoDatosImpl;
+import mx.com.gm.peliculas.domain.Pelicula;
 import mx.com.gm.peliculas.negocio.CatalogoPeliculasImpl;
+ 
+public class ListarPelicula extends javax.swing.JFrame {
 
-/**
- *
- * @author Bulgaro
- */
-public class Buscar extends javax.swing.JFrame {
-        private static final String NOMBRE_ARCHIVO = "C:\\Users\\Bulgaro\\Desktop\\Funadamentos Java\\laboratorioFinal\\laboratorioFinal\\catalogoPeliculas\\catalogoPeliculas.txt";
-        CatalogoPeliculasImpl catalogo = new CatalogoPeliculasImpl();
-        AccesoDatosImpl acceso = new AccesoDatosImpl();
-        
-    public Buscar() {
+    /**
+     * Creates new form ListarPelicula
+     */
+    AccesoDatosImpl acceso = new AccesoDatosImpl();
+    
+    DefaultListModel<String> modeloLista;
+    CatalogoPeliculasImpl catalogo = new CatalogoPeliculasImpl();
+    private static final String NOMBRE_ARCHIVO = "C:\\Users\\Bulgaro\\Desktop\\Funadamentos Java\\laboratorioFinal\\laboratorioFinal\\catalogoPeliculas\\catalogoPeliculas.txt";
+
+    public ListarPelicula() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setTitle("Buscar Pelicula");
+        this.setLocationRelativeTo(null);
+        this.setTitle("Listado de peliculas");
+        
+        List<Pelicula> peliculas = new ArrayList<>();
+        modeloLista = new DefaultListModel<>();
+        
+        peliculas = acceso.listar(NOMBRE_ARCHIVO);
+            
+            for(Pelicula peli : peliculas){
+                modeloLista.addElement(peli.getNombre());
+            }
+        
+        ListaPeliculas.setModel(modeloLista);
+        
     }
 
     /**
@@ -36,21 +53,23 @@ public class Buscar extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblBuscar = new javax.swing.JLabel();
-        txtBuscar = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
-        lblBuscado = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListaPeliculas = new javax.swing.JList<>();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar Pelicula"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Lista de peliculas")));
 
-        lblBuscar.setText("Ingrese Nombre Pelicula");
+        jLabel1.setText("Lista");
 
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        jScrollPane1.setViewportView(ListaPeliculas);
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -61,27 +80,23 @@ public class Buscar extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblBuscado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 83, Short.MAX_VALUE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBuscar)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
-                .addGap(42, 42, 42)
-                .addComponent(lblBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(btnSalir)
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -97,19 +112,16 @@ public class Buscar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
-        JTextField buscar = txtBuscar;
-        
-        
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,29 +140,29 @@ public class Buscar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Buscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Buscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Buscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Buscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarPelicula.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Buscar().setVisible(true);
+                new ListarPelicula().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JList<String> ListaPeliculas;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblBuscado;
-    private javax.swing.JLabel lblBuscar;
-    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

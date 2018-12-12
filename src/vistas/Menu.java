@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -23,6 +23,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setTitle("Menu Principal");
     }
 
     /**
@@ -96,6 +97,11 @@ public class Menu extends javax.swing.JFrame {
         mnuSalir.setText("Salir");
 
         itemSalir.setText("Salir");
+        itemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemSalirActionPerformed(evt);
+            }
+        });
         mnuSalir.add(itemSalir);
 
         jMenuBar1.add(mnuSalir);
@@ -121,7 +127,7 @@ public class Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No hay nada para listar","Error", JOptionPane.ERROR_MESSAGE);
             itemInicializarArchivo.setEnabled(false);
         }else
-        new ListarPeliculas().setVisible(true);
+        new ListarPelicula().setVisible(true);
         catalogo.listarPeliculas(NOMBRE_ARCHIVO);
     }//GEN-LAST:event_itemListarPeliculaActionPerformed
 
@@ -142,8 +148,22 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_itemBuscarPeliculaActionPerformed
 
     private void itemBorrarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBorrarPeliculaActionPerformed
-        catalogo.borrarArchivo(NOMBRE_ARCHIVO);
+        if (acceso.existe(NOMBRE_ARCHIVO)){
+            catalogo.borrarArchivo(NOMBRE_ARCHIVO);
+            JOptionPane.showMessageDialog(null, "El archivo se ha borrado correctamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
+            //itemBorrarPelicula.setEnabled(false);
+            //itemAgregarPelicula.setEnabled(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "No hay ningun archivo para borrar","Informacion", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        
+        
     }//GEN-LAST:event_itemBorrarPeliculaActionPerformed
+
+    private void itemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_itemSalirActionPerformed
 
     /**
      * @param args the command line arguments
